@@ -7,7 +7,7 @@ import argparse
 import time
 import gym.envs.atari as atari
 
-def rollout(env, num_steps):
+def random_rollout(env, num_steps):
     states = []
 
     for _ in range(num_steps):
@@ -18,7 +18,6 @@ def rollout(env, num_steps):
         time.sleep(1)
 
         state = env.get_state_()
-        #state = env.clone_full_state()
         states.append(state)
         print("Getting state", state)
 
@@ -39,7 +38,6 @@ def main():
     env = atari.AtariEnv()
 
     env.reset()
-    np.random.seed(0)
     num_steps = 8
 
     # Do a short random rollout
