@@ -69,6 +69,21 @@ class Env(object):
         """
         raise NotImplementedError
 
+    def get_state_(self):
+        """Gets and returns the state of the environment.
+
+        Returns: state (object): the current state of the environment.
+        """
+        raise NotImplementedError
+
+    def set_state_(self, state):
+        """Sets the state of the environment and returns an initial observation.
+
+        Returns: observation (object): the initial observation of the
+            space.
+        """
+        raise NotImplementedError
+
     def render(self, mode='human'):
         """Renders the environment.
 

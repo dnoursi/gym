@@ -143,3 +143,15 @@ class MujocoEnv(gym.Env):
             self.sim.data.qpos.flat,
             self.sim.data.qvel.flat
         ])
+
+    def get_state_(self):
+        qpos = self.sim.data.qpos
+        qvel = self.sim.data.qvel
+        return (qpos, qvel)
+        # return self.sim.get_state()
+
+    def set_state_(self, state):
+        qpos = state[0]
+        qvel = state[1]
+        self.set_state(qpos, qvel)
+        # self.sim.set_state(state)

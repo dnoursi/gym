@@ -170,6 +170,20 @@ class AtariEnv(gym.Env, utils.EzPickle):
         self.ale.restoreSystemState(state_ref)
         self.ale.deleteState(state_ref)
 
+    def get_state_(self):
+        #return self.clone_state()
+        return self.clone_full_state()
+
+    def set_state_(self, state):
+        if state is None:
+            obs = self.reset()
+        else:
+            #self.restore_state(state)
+            self.restore_full_state(state)
+            obs = self._get_obs()
+        return obs
+
+
 ACTION_MEANING = {
     0 : "NOOP",
     1 : "FIRE",
