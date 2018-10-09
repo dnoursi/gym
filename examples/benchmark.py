@@ -6,6 +6,8 @@ import numpy as np
 import argparse
 import time
 import gym.envs.atari as atari
+import gym.envs.mujoco as mujoco
+
 
 def random_rollout(env, num_steps):
     states = []
@@ -30,12 +32,15 @@ def main():
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--display', action='store_true')
-    #parser.add_argument('target', nargs="?", default="PongDeterministic-v0")
+    parser.add_argument('--target', nargs="?", default="atari")
     args = parser.parse_args()
 
     #env = gym.make(args.target)
-    # pong by default
-    env = atari.AtariEnv()
+    target = args.target
+    if target == "atari":
+        env = atari.AtariEnv()
+    if target == "mujoco":
+        env = mujoco.MujocoEnv()
 
     env.reset()
     num_steps = 8
